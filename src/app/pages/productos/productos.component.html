@@ -1,0 +1,165 @@
+<div class="header bg-gradient-danger pb-8 pt-2 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--9">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 class="mb-0"><i class="fas fa-plus"></i> Agregar productos</h3>
+                </div>
+                <form #formproducto="ngForm" id="formproducto">
+                    <div class="container bg-secondary pt-3">
+                        <div class="row">
+                            <div class="col-lg-4 text-center">
+                                <div class="text-center border rounded pt-4 pb-4 subir bg-white"
+                                    (click)="cargarImagenAdd()" *ngIf="imagenEstadoAdd == false">
+                                    <i class="fas fa-upload"></i> Subir imagen
+                                </div>
+                                <div class="border rounded bg-white p-1 mb-2" *ngIf="imagenEstadoAdd == true;"
+                                    (click)="cargarImagenAdd()">
+                                    <img src="{{imagenCargadaAdd}}" class="w-50">
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-username">Código</label>
+                                    <input type="text" id="input-username" class="form-control form-control-alternative"
+                                        maxlength="16" placeholder="Ingresar código" name="codigo" #codigo="ngModel"
+                                        [(ngModel)]="producto.CODIGO" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-username">Nombre producto</label>
+                                    <input type="text" id="input-username" class="form-control form-control-alternative"
+                                        placeholder="Ingresar nombre" name="nombre" #nombre="ngModel"
+                                        [(ngModel)]="producto.NOMBRES" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-username">Proveedor</label>
+                                    <select class="form-control form-control-alternative" name="idproveedor"
+                                        #idproveedor="ngModel" [(ngModel)]="producto.IDPROVEEDOR" required>
+                                        <option value="1">Manuel Rivera</option>
+                                        <option value="2">Javier Gallegos</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-username">Precio compra</label>
+                                    <input type="text" id="input-username" class="form-control form-control-alternative"
+                                        maxlength="10" placeholder="Ingresar precio compra" name="pcompra"
+                                        #pcompra="ngModel" [(ngModel)]="producto.PRECIOCOMPRA" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-username">Precio venta</label>
+                                    <input type="text" id="input-username" class="form-control form-control-alternative"
+                                        maxlength="10" placeholder="Ingresar precio venta" name="pventa"
+                                        #pventa="ngModel" [(ngModel)]="producto.PRECIO" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-username">Stock</label>
+                                    <input type="text" id="input-username" class="form-control form-control-alternative"
+                                        placeholder="Ingresar stock" name="stock" #stock="ngModel"
+                                        [(ngModel)]="producto.STOCK" maxlength="4" pattern="[0-9]+" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label class="form-control-label">Descripción:</label>
+                                    <textarea rows="3" class="form-control form-control-alternative"
+                                        placeholder="Ingresar descripción" name="descripcion" #descripcion="ngModel"
+                                        [(ngModel)]="producto.DESCRIPCION" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <a class="btn btn-primary" (click)="guardar()" >
+                                <i class="far fa-save"></i> Guardar producto
+                            </a>
+                        </div>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark table -->
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card bg-default shadow">
+                <div class="card-header bg-transparent border-0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3 class="text-white mb-0 pt-2">
+                                    <i class="fas fa-list"></i> Lista de productos
+                                </h3>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" id="input-username"
+                                    class="form-control form-control-alternative mb-0" placeholder="Buscar">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-dark table-flush">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Código</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Precio compra</th>
+                                <th scope="col">Precio venta</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let x of productos">
+                                <td>
+                                    <img src="{{urlImage + x.PORTADA}}" style="height: 60px;" class="rounded">
+                                </td>
+                                <th scope="row"> {{x.CODIGO}} </th>
+                                <td>
+                                    {{x.NOMBRES}}
+                                </td>
+                                <td>
+                                    {{x.STOCK}}
+                                </td>
+                                <td>
+                                    {{x.PRECIOCOMPRA}}
+                                </td>
+                                <td>
+                                    {{x.PRECIO}}
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-danger" (click)="delete(x.IDPRODUCTO, x.PORTADA)">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

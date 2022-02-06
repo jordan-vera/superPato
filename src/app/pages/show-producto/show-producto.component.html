@@ -1,0 +1,46 @@
+<div class="header bg-gradient-danger py-7 py-lg-8">
+    <div class="container">
+        <div class="header-body text-center mb-5">
+
+        </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container mt--9">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow p-5">
+                <div class="row">
+                    <div class="col-lg-6 text-center">
+                        <img src="{{urlImage+productoOne.PORTADA}}" class="w-100 rounded">
+                    </div>
+                    <div class="col-lg-6">
+                        <h1>{{productoOne.NOMBRES}}</h1>
+                        <p><b>Código: </b>{{productoOne.CODIGO}}</p>
+                        <p>{{productoOne.DESCRIPCION}}</p>
+                        <br>
+                        <div class="text-center">
+                            <h1 class="mb-0">${{productoOne.PRECIO}}</h1>
+                            <label >Precio</label>
+                            <br> <br>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-shopping-cart"></i> Comprar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+           <br> <br>
+            </div>
+        </div>
+    </div>
+
+    <br> <br> <br> <br>
+
+</div>
